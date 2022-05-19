@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: poppins, sans-serif;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            padding: 0 9%;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            background-color: bisque;
+        }
+
+        .nav-brand img {
+            width: 200px;
+        }
+
+        nav ul {
+            display: flex;
+            width: 40%;
+            justify-content: space-between;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+
+
+        @media screen and (max-width:768px) {
+
+            /* Hamburger menu */
+            .menu-toggle {
+                display: block;
+                display: flex;
+                flex-direction: column;
+                height: 20px;
+                align-items: center;
+                justify-content: space-between;
+                position: relative;
+            }
+
+            .menu-toggle input {
+                position: absolute;
+                width: 48px;
+                height: 28px;
+                left: -10px;
+                top: -5px;
+                opacity: 0;
+                cursor: pointer;
+                z-index: 2;
+            }
+
+            .menu-toggle span {
+                display: block;
+                width: 28px;
+                height: 3px;
+                background-color: white;
+                border-radius: 3px;
+                transition: 0.5s;
+            }
+
+            /* Hamburger Menu Animation */
+            .menu-toggle span:nth-child(2) {
+                transform-origin: 0 0;
+            }
+
+            .menu-toggle input:checked~span:nth-child(2) {
+                transform: rotate(45deg) translate(-1px, -2px);
+            }
+
+            .menu-toggle span:nth-child(4) {
+                transform-origin: 0 100%;
+            }
+
+            .menu-toggle input:checked~span:nth-child(4) {
+                transform: rotate(-45deg) translate(1px, 0);
+            }
+
+            .menu-toggle span:nth-child(3) {
+                transform: scale(1);
+            }
+
+            .menu-toggle input:checked~span:nth-child(3) {
+                transform: scale(0);
+            }
+
+            nav ul {
+                position: absolute;
+                right: 0;
+                top: 0;
+                flex-direction: column;
+                height: 100vh;
+                align-items: center;
+                justify-content: space-evenly;
+                background-color: black;
+                z-index: -1;
+                width: 100%;
+                transform: translateX(100%);
+                transition: 1s;
+                opacity: 0;
+            }
+        }
+
+        nav ul.slide {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-brand">
+            <img src="images/logo-benar.png">
+        </div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#" class="login">Login</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <input type="checkbox">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    <script>
+        const slide = document.querySelector('.menu-toggle input');
+        const nav = document.querySelector('nav ul');
+        slide.addEventListener('click', function () {
+            nav.classList.toggle('slide');
+        })
+
+    </script>
+</body>
+
+</html>

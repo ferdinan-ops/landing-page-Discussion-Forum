@@ -9,9 +9,11 @@
     list-style: none;
     text-decoration: none;
     box-sizing: border-box;
-
 }
 
+html {
+    scroll-behavior: smooth;
+}
 
 nav {
     display: flex;
@@ -19,11 +21,18 @@ nav {
     padding: 1em 9%;
     justify-content: space-between;
     background-color: white;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    transition: 0.3s ease-in-out;
+    z-index: 99999;
+}
+
+nav.sticky {
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.603);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 nav ul {
@@ -34,17 +43,19 @@ nav ul {
 
 nav li a {
     color: black;
+    transition: 0.3s;
+}
+
+nav li a:hover {
+    color: maroon;
 }
 
 .nav-brand img {
     width: 250px;
 }
 
-.nav-login a {
-    color: white;
-    background-color: maroon;
-    padding: 10px 20px;
-    border-radius: 5px;
+.menu-toggle {
+    display: none;
 }
 
 section {
@@ -52,12 +63,30 @@ section {
     justify-content: center;
     align-items: center;
     padding: 0 9%;
-    min-height: 100vh;
+    min-height: 116vh;
     /* background-color: aqua; */
 }
 
+.hero {
+    background-color: maroon;
+    color: white;
+}
+
+.login {
+    background-color: maroon;
+    border: 2px solid maroon;
+    padding: 8px 20px;
+    color: white;
+    border-radius: 30px;
+    transition: 0.3s ease-in-out;
+}
+
+.login:hover {
+    background-color: white;
+    color: maroon;
+}
+
 .content {
-    margin-top: 100px;
     width: 100%;
 }
 
@@ -69,6 +98,7 @@ section {
     display: flex;
     align-items: center;
     flex-direction: row;
+    /* padding-top: 100px; */
 }
 
 .desc {
@@ -79,19 +109,29 @@ section {
 
 .desc a {
     display: inline-block;
-    background-color: maroon;
+    background-color: white;
     padding: 10px 15px;
     border-radius: 30px;
-    color: white;
+    color: maroon;
+    transition: 0.3s ease-in-out;
+}
+
+.desc a:hover {
+    box-shadow: rgba(149, 157, 165, 0.648) 0px 8px 24px;
+}
+
+
+.desc i {
+    margin-left: 5px;
+    transition: 0.3s ease-in-out;
+}
+
+.desc a:hover i {
+    transform: translateX(5px);
 }
 
 .desc p {
     margin: 20px 0;
-}
-
-.features {
-    background-color: maroon;
-    color: white;
 }
 
 
@@ -111,11 +151,11 @@ section {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-top: 50px;
+    margin: 50px 0;
 }
 
 .card {
-    box-shadow: rgba(149, 157, 165, 0.761) 0px 8px 24px;
+    /* box-shadow: rgba(149, 157, 165, 0.761) 0px 8px 24px; */
     width: 20%;
     padding: 25px;
     display: flex;
@@ -124,6 +164,15 @@ section {
     background-color: white;
     color: maroon;
     border-radius: 20px;
+    transition: 0.3s ease-in-out;
+}
+
+.features h1 {
+    color: maroon;
+}
+
+.card:hover {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .card-header {
@@ -145,19 +194,20 @@ section {
 }
 
 .yellow {
-    background-color: #EFE1BA;
+    background-color: #f4d47c;
 }
 
 .green {
-    background-color: #C8E9E0;
+    background-color: #95ebd4;
 }
 
 .blue {
     background-color: #13243C;
 }
 
-.about h1 {
-    color: maroon;
+.about {
+    background-color: maroon;
+    color: white;
 }
 
 .items2 {
@@ -173,10 +223,12 @@ section {
     align-items: center;
     flex-direction: column;
     text-align: center;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background-color: white;
+    color: maroon;
     padding: 25px;
     border-radius: 20px;
     margin: 20px;
+    width: 300px;
 }
 
 .worker img {
@@ -188,13 +240,148 @@ section {
 .worker span {
     margin-top: 20px;
     font-size: 12px;
-    color: maroon;
     font-weight: bold;
 }
 
+.contact h1 {
+    color: maroon;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+table {
+    width: 80%;
+}
+
+table tr td {
+    padding-bottom: 15px;
+}
+
+table tr td input {
+    padding: 8px;
+}
+
+table input,
+table textarea {
+    width: 100%;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    border: 1px solid #8c8c8c;
+}
+
+footer {
+    background-color: maroon;
+    margin-top: -40px;
+    padding: 0 9% 50px 9%;
+    color: white;
+}
+
+footer p {
+    margin-top: 20px;
+}
+
+.contact input[type=submit] {
+    border: none;
+    outline: none;
+    background-color: maroon;
+    color: white;
+    padding: 15px 0;
+}
+
 @media only screen and (max-width: 768px) {
+
+    /* Hamburger menu */
+    .menu-toggle {
+        display: block;
+        display: flex;
+        flex-direction: column;
+        height: 20px;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    .menu-toggle input {
+        position: absolute;
+        width: 48px;
+        height: 28px;
+        left: -10px;
+        top: -5px;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 3;
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 28px;
+        height: 3px;
+        background-color: maroon;
+        border-radius: 3px;
+        transition: 0.5s;
+    }
+
+    /* Hamburger Menu Animation */
+    .menu-toggle span:nth-child(2) {
+        transform-origin: 0 0;
+    }
+
+    .menu-toggle input:checked~span:nth-child(2) {
+        transform: rotate(45deg) translate(-1px, -2px);
+    }
+
+    .menu-toggle span:nth-child(4) {
+        transform-origin: 0 100%;
+    }
+
+    .menu-toggle input:checked~span:nth-child(4) {
+        transform: rotate(-45deg) translate(1px, 0);
+    }
+
+    .menu-toggle span:nth-child(3) {
+        transform: scale(1);
+    }
+
+    .menu-toggle input:checked~span:nth-child(3) {
+        transform: scale(0);
+    }
+
     nav ul {
-        display: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        flex-direction: column;
+        height: 100vh;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: white;
+        z-index: -9999;
+        width: 100%;
+        transform: translateX(100%);
+        transition: 1s;
+        opacity: 0;
+    }
+
+    nav ul.slide {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    section {
+        padding-bottom: 30px;
+    }
+
+    .content {
+        padding: 150px 0;
+    }
+
+    .hero .content {
+        padding-bottom: 0;
     }
 
     .nav-brand img {
@@ -225,5 +412,19 @@ section {
         grid-template-columns: repeat(1, 1fr);
         justify-content: center;
         align-items: center;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    footer {
+        padding: 50px 9%;
+        margin-top: -10px;
+    }
+
+    footer p {
+        font-size: 12px;
+        margin-top: 20px;
     }
 }
